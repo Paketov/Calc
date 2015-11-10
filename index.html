@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Калькулятор</title>
+    <script language="javascript" type="text/javascript" src="src/strv.js"></script>
+</head>
+<body onload="Sel.Load(Select1p3,'SelValue');Sel.Load(Select2p3,'SelVar',11);">
+<textarea id="Text1" style="border-style: solid; border-color: inherit; border-width: 0px;width: 206px; height: 98px; margin-top: 7px; margin-left: 6px; background: none;overflow: hidden;"></textarea>
+<select id="Select2" onclick="AngleGet__();" onchange="AngleRun__();" name="Меры" style="border-style: solid; border-width: 0px; position: absolute;top: 120px; left: 11px; width: 90px; background:none;">
+<option value="gr">gr</option>
+<option value="r">r</option>
+<option value="g">g</option>
+</select>
+<select id="Select1" name="Система счисления" onclick="OprGet__();" onchange="OprRun__();"style="border-style: solid; border-width: 0px; position: absolute;top: 120px; left: 129px; width: 90px; background: none;">
+<option value="Dec">Dec</option>
+<option value="Oct">Oct</option>
+<option value="Bin">Bin</option>
+<option value="Hex">Hex</option>
+</select>
+<div id="Page1" style="z-index:-1;background-position: left bottom; height: 293px; position: absolute;top: 0px; left: 0px; width: 230px; background-image: url('src/Form1.png'); background-repeat: no-repeat;background-attachment: inherit;">
+<div style="width: 41px; position: absolute; top: 143px; left: 52px; height: 33px;right: 137px;" onclick="return SetOnePage('-')"></div>
+<div style="width: 40px; position: absolute; top: 142px; left: 11px; height: 34px;"onclick="return SetOnePage('+')"></div>
+<div style="width: 40px; position: absolute; top: 212px; left: 53px; height: 34px;"onclick="return CalcOnePage('acos')"></div>
+<div style="width: 41px; position: absolute; top: 145px; left: 137px; height: 34px;"onclick="return SetOnePage('/')"></div>
+<div style="width: 50px; position: absolute; top: 143px; left: 178px; height: 36px;"onclick="return Button5_onclick()"></div>
+<div style="width: 40px; position: absolute; top: 211px; left: 10px; height: 34px;"onclick="return CalcOnePage('asin')"></div>
+<div style="width: 41px; position: absolute; top: 145px; left: 95px; height: 32px;"onclick="return SetOnePage('*')"></div>
+<div style="width: 40px; position: absolute; top: 212px; left: 95px; height: 32px;right: 95px;" onclick="return CalcOnePage('atg')"></div>
+<div style="width: 40px; position: absolute; top: 246px; left: 136px; height: 40px;right: 54px;" onclick="Text1.value += Math.PI.toString();"></div>
+<div style="width: 41px; position: absolute; top: 177px; left: 137px; height: 33px;"onclick="return CalcOnePage('^')"></div>
+<div style="width: 41px; position: absolute; top: 210px; left: 137px; height: 36px;"onclick="return CalcOnePage('cor')"></div>
+<div style="width: 46px; position: absolute; top: 212px; left: 180px; height: 35px;"onclick="Text1.value = '';"></div>
+<div style="width: 41px; position: absolute; top: 178px; left: 10px; height: 34px;"onclick="return CalcOnePage('sin')"></div>
+<div style="width: 43px; position: absolute; top: 176px; left: 52px; height: 36px;"onclick="return CalcOnePage('cos')"></div>
+<div style="width: 39px; position: absolute; top: 177px; left: 95px; height: 34px;"onclick="return CalcOnePage('tg')"></div>
+<div style="width: 46px; position: absolute; top: 178px; left: 179px; height: 35px;"onclick="return CalcOnePage('ln')"></div>
+<div style="width: 41px; position: absolute; top: 246px; left: 10px; height: 38px;"onclick="return MemAdd()"></div>
+<div style="width: 40px; position: absolute; top: 248px; left: 51px; height: 33px;right: 139px;" onclick="return MemShow()"></div>
+<div style="width: 40px; position: absolute; top: 246px; left: 92px; height: 34px;"onclick="return MemNull()"></div>
+<div style="width: 51px; position: absolute; top: 246px; left: 176px; height: 41px;"onclick="GoToPage(Page1,Page2,'109px','130px');"></div>
+</div>
+<div id="Page2" style="display:none;z-index:-1;background-position: left bottom; height: 293px; position: absolute;top: 0px; left: 0px; width: 230px; background-image: url('src/Form3.png'); background-repeat: no-repeat;background-attachment: inherit;">
+<div style="position: absolute; top: 210px; left: 51px; height: 35px; width: 44px;"onclick="Sel.DelItem(Select1p3);Sel.Save(Select1p3,'SelValue');"></div>
+<div style="position: absolute; top: 243px; left: 9px; height: 38px; width: 42px;right: 179px;" onclick="SelFun.Save();"></div>
+<div style="position: absolute; top: 244px; left: 94px; height: 39px; width: 42px;"onclick="save_Y();"></div>
+<div style="position: absolute; top: 243px; left: 136px; height: 37px; width: 42px;"onclick="save_Z();"></div>
+<div style="position: absolute; top: 244px; left: 52px; height: 38px; width: 42px;"onclick="save_X();"></div>
+<div style="position: absolute; top: 244px; left: 177px; height: 40px; width: 46px;"onclick="GoToPage(Page2,Page3,'65px','86px');"></div>
+<div style="position: absolute; top: 211px; left: 177px; height: 34px; width: 53px;"onclick="fun_ravno();"></div>
+<div style="position: absolute; top: 177px; left: 9px; height: 33px; width: 42px;"onclick="Sel.AddFuntion(Select2p3);Sel.Save(Select2p3,'SelVar');"></div>
+<div style="position: absolute; top: 210px; left: 136px; height: 34px; width: 40px;"onclick="Text1.value = '';"></div>
+<div style="position: absolute; top: 211px; left: 95px; height: 33px; width: 40px;"onclick="FUNCTION = '';"></div>
+<div style="position: absolute; top: 211px; left: 9px; height: 33px; width: 42px;"onclick="Sel.AddItem(Select1p3);Sel.Save(Select1p3,'SelValue');"></div>
+<div style="position: absolute; top: 177px; left: 52px; height: 33px; width: 42px;"onclick="Sel.DelItem(Select2p3);Sel.Save(Select2p3,'SelVar');"></div>
+<select id="Select1p3" name="Функции" style="color:Blue;width: 208px; position: absolute; top: 153px; left: 11px;border-style: solid; border-color: inherit; border-width: 0px;background:none;" onchange="Sel.PrintItem(Select1p3);"></select>
+<select id="Select2p3" name="Переменные, макросы." style="position: absolute; top: 182px; left: 96px; width: 123px;border-style: solid; border-color: inherit; border-width: 0px;background:none; color:Red;" onchange="Sel.PrintItem(Select2p3);"></select>
+</div>
+<div id="Page3" style="z-index:-1;display:none; background-position: left bottom; height: 293px; position: absolute; top: 0px; left: 0px; width: 230px; background-image: url('src/Form2.png'); background-repeat: no-repeat; background-attachment: inherit;">
+<div style="position:absolute; top: 178px; left: 10px; width: 41px; height: 31px;" onclick="Text1.value = Text1.value + '4';"></div>
+<div style="position:absolute; top: 143px; left: 10px; width: 42px; height: 34px;" onclick="Text1.value = Text1.value + '1';"></div>
+<div style="position:absolute; top: 143px; left: 53px; width: 39px; height: 34px;" onclick="Text1.value = Text1.value + '2';"></div>
+<div style="position:absolute; top: 179px; left: 52px; width: 40px; height: 32px;" onclick="Text1.value = Text1.value + '5';"></div>
+<div style="position:absolute; top: 178px; left: 95px; width: 40px; height: 33px;" onclick="Text1.value = Text1.value + '6';"></div>
+<div style="position:absolute; top: 210px; left: 10px; width: 41px; height: 34px;" onclick="Text1.value = Text1.value + '7';"></div>
+<div style="position:absolute; top: 211px; left: 52px; width: 42px; height: 35px; right: 136px;" onclick="Text1.value = Text1.value + '8';"></div>
+<div style="position:absolute; top: 211px; left: 95px; width: 40px; height: 34px;" onclick="Text1.value = Text1.value + '9';"></div>
+<div style="position:absolute; top: 247px; left: 96px; width: 38px; height: 38px;" onclick="Text1.value = Text1.value + '-';"></div>
+<div style="position:absolute; top: 145px; left: 94px; width: 40px; height: 31px;" onclick="Text1.value = Text1.value + '3';"></div>
+<div style="position:absolute; top: 244px; left: 9px; width: 41px; height: 38px;" onclick="Text1.value = Text1.value + '0';"></div>
+<div style="position:absolute; top: 245px; left: 137px; width: 39px; height: 39px;" onclick="Text1.value = Text1.value + '*';"></div>
+<div style="position:absolute; top: 245px; left: 178px; width: 49px; height: 43px;" onclick="GoToPage(Page3,Page1,'98px','120px');"></div>
+<div style="position:absolute; top: 112px; left: 52px; width: 41px; height: 32px;" onclick="Text1.value = Text1.value + '^';"></div>
+<div style="position:absolute; top: 109px; left: 178px; width: 41px; height: 35px;" onclick="Text1.value = Text1.value + '|';"></div>
+<div style="position:absolute; top: 178px; left: 179px; width: 38px; height: 32px;" onclick="Text1.value = Text1.value + ')';"></div>
+<div style="position:absolute; top: 245px; left: 51px; width: 42px; height: 40px;" onclick="Text1.value = Text1.value + '+';"></div>
+<div style="position:absolute; top: 212px; left: 178px; width: 42px; height: 35px;" onclick="Text1.value = Text1.value + '(';"></div>
+<div style="position:absolute; top: 141px; left: 177px; width: 51px; height: 36px;" onclick="Start_exec(Text1.value);"></div>
+<div style="position:absolute; top: 178px; left: 136px; width: 41px; height: 34px;" onclick="Text1.value = Text1.value + '.';"></div>       
+<div style="position:absolute; top: 213px; left: 138px; width: 38px; height: 31px;" onclick="Text1.value = Text1.value + '/';"></div>
+<div style="position:absolute; top: 112px; left: 136px; width: 39px; height: 31px;" onclick="Text1.value = Text1.value = '';"></div>
+<div style="position:absolute; top: 144px; left: 138px; width: 39px; height: 33px;" onclick="Text1.value = Text1.value.substring(0, Text1.value.length - 1);"></div>
+<div style="position:absolute; top: 111px; left: 95px; width: 38px; height: 33px;" onclick="Text1.value = Text1.value + '&';"></div>
+<div style="position:absolute; top: 112px; left: 11px; width: 38px; height: 30px;" onclick="Text1.value = Text1.value + 'cor';"></div>
+</div>
+</body>
+</html>
